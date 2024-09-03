@@ -1,0 +1,17 @@
+diff --git a/stm32mp135f-dk.dts.orig b/stm32mp135f-dk.dts
+index 3d95ba7..67db880 100644
+--- a/arch/arm/boot/dts/stm32mp135f-dk.dts
++++ b/arch/arm/boot/dts/stm32mp135f-dk.dts
+@@ -605,6 +605,12 @@
+ 	/delete-property/dmas;
+ 	/delete-property/dma-names;
+ 	status = "okay";
++	current-speed = <115200>;
++
++	grovewifi: grovewifiv2 {
++		compatible = "seeedstudio,grovewifiv2";
++		status = "okay";
++	};
+ };
+ 
+ &usart1 {
