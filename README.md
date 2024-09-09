@@ -23,7 +23,7 @@ This is the $\color{Aqua}{STM32MP135f-DK}$ board based on the $\color{Aqua}{MP13
 
 To be able to manipulate and develop applications on this MPU a Linux Distribution is provided; $\color{Aqua}{OpenSTLinux}$.  
 
-## OpenSTLinux🥚🥚كيفية عمل الكيرنل بدون بيض
+## OpenSTLinux🥚🥚كيفية طبخ الكيرنل بدون بيض
 
 The OpenSTLinux package is a Linux distribution specifically designed for STM32MPU microprocessors, based on the **[Yocto Project](https://github.com/AKhadhraoui47/Yocto_Rpi_IMU?tab=readme-ov-file#yocto-project)** utilizing OpenEmbedded framework. To ease-up the learning process this distribution comes in different software Packages:  
 
