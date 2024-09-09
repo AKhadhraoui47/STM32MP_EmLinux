@@ -120,7 +120,7 @@ Start operation done successfully at partition 0x13
 Flashing service completed successfully
 ```  
 
-### Flashing directly with DD 
+### Flashing directly with DD 💾
 
 Now let's get back to the **scripts/** folder we mentionned earlier. This folder provides a script that can be used to generate a raw image to be flashed directly to the **micro SD-Car** using the ***disk/data duplicator*** command **(dd)**. Let's change dirctory to the **scripts/** folder then:  
 
@@ -151,7 +151,7 @@ ak47@ak47:$ minicom -D /dev/ttyACMx
 
 Now that we got familiar with our tools and environment let's get to the real deal.  
 
-## Project's Context  
+## Project's Context 💡
 
 Imagine this scenario; You're working on a custom product based on the $\color{Aqua}{STM32MP135}$ $\color{Aqua}{Microprocessor}$. For wireless communication over **Wi-Fi** your custom will be equipped with the [Grove Wifi v2](https://wiki.seeedstudio.com/Grove-UART_Wifi_V2/) from [@seeedstudio](https://github.com/Seeed-Studio). And to easily interact with the module we will develop its own **Kernel Module** and a **Command Line Interface** and make an **in-tree** device.  
 
@@ -162,7 +162,7 @@ Imagine this scenario; You're working on a custom product based on the $\color{A
     **3. Develop the Kernel Module**  
     **4. Develop the Command Line Interface**  
 
-### Enabling UART instance  
+### Enabling UART instance ☑️
 
 Let's understand the data structure we will be modifying which is the $\color{Aqua}{Device}$ $\color{Aqua}{Tree}$. It is a data structure in embedded systems that tells the operating system about the hardware components and their configuration. Similar to how a BIOS provides essential hardware information at boot, the DT helps the OS manage hardware without hardcoding specifics, offering more flexibility across platforms.
 
@@ -236,4 +236,9 @@ A simple **bbappend** [recipe](meta-custom/recipes-kernel/linux/linux-stm32mp_%2
 A detailed comprehensive [documentation](https://github.com/AKhadhraoui47/Kernel_Modules) is provided about kernel development and the structure of the module i have developed for our module.  
 
 > Note that the correspondance between the hardware declared in the device-tree and the kernel module is ensured through [of_device_id struct](https://github.com/AKhadhraoui47/Kernel_Modules?tab=readme-ov-file#5-open-firmware-device-id).  
+
+Recipe
+
+## References  
+
 
