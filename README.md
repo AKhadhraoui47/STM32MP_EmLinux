@@ -153,7 +153,19 @@ Now that we got familiar with our tools and environment let's get to the real de
 
 ## Project's Context  
 
-Imagine this scenario; You're working on a custom product based on the $\color{Aqua}{STM32MP135}$ $\color{Aqua}{Microprocessor}$. For wireless communication over **Wi-Fi** your custom will be equipped with the [Grove Wifi v2](https://wiki.seeedstudio.com/Grove-UART_Wifi_V2/) from @seeedstudio.
+Imagine this scenario; You're working on a custom product based on the $\color{Aqua}{STM32MP135}$ $\color{Aqua}{Microprocessor}$. For wireless communication over **Wi-Fi** your custom will be equipped with the [Grove Wifi v2](https://wiki.seeedstudio.com/Grove-UART_Wifi_V2/) from [@seeedstudio](https://github.com/Seeed-Studio). And to easily interact with the module we will develop its own **Kernel Module** and a **Command Line Interface** and make an **in-tree** device.  
+
+- **Key Steps**:
+    - 
+    **1. Modify the DT: Enable the UART instance connected to the module**   
+    **2. Modify the DT: Make the module an in-tree device**   
+    **3. Develop the Kernel Module**  
+    **4. Develop the Command Line Interface**  
+
+### Enabling UART instance  
+
+The UART instance i am working 
+
 
 
 
