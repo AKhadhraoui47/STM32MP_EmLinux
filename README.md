@@ -113,6 +113,13 @@ ak47@ak47:$ STM32_Programmer_CLI -c port=usb1 -w flashlayout_<IMAGE>/extensible/
 
 > Common error may occur due to wrong directories in **tsv** file. You may need to move up **two levels** example: ***fip/ -> ../../fip/***
 
+If everything went ok you should see a message on your terminal.  
+
+```console
+Start operation done successfully at partition 0x13
+Flashing service completed successfully
+```
+
 
 
 
