@@ -16,7 +16,7 @@ The STM32MP135 is a microprocessor (MPU) developed by STMicroelectronics, based 
 This is the $\color{Aqua}{STM32MP135f-DK}$ board based on the $\color{Aqua}{MP135}$ that we will be working on, featuring user buttons, Wi‐Fi®, Bluetooth® Low Energy, a 2-megapixel CMOS camera module and an STLINK-V3E is integrated on the board.  
   
 <p align="center">
-<img src="https://mm.digikey.com/Volume0/opasdata/d220001/derivates/1/020/888/945/STM32MP135F-DK_sml.jpg" />
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrXezzB2UCQcziE8tUWDF5VpFNpgzMJXP96w&s"/>
 </p>
   
 <sub>To check the full functionnalities and features provided by this board check the [user-manual](https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://www.st.com/resource/en/user_manual/um2993-discovery-kit-with-1-ghz-stm32mp135fa-mpu-stmicroelectronics.pdf&ved=2ahUKEwioi5n7ybWIAxXl_7sIHfkCOLwQFnoECAoQAQ&usg=AOvVaw2CwRJAdiHNoX7tqw4e1NXW). </sub>  
