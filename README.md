@@ -118,9 +118,38 @@ If everything went ok you should see a message on your terminal.
 ```console
 Start operation done successfully at partition 0x13
 Flashing service completed successfully
+```  
+
+### Flashing directly with DD 
+
+Now let's get back to the **scripts/** folder we mentionned earlier. This folder provides a script that can be used to generate a raw image to be flashed directly to the **micro SD-Car** using the ***disk/data duplicator*** command **(dd)**. Let's change dirctory to the **scripts/** folder then:  
+
+```console
+ak47@ak47:$ ./create_sdcard_from_flashlayout.sh ../flashlayout_<IMAGE>/FlashLayout_sdcard_<>.tsv 
+```  
+This script will create a complete raw image using the partitions and binaries' paths mentionned in the **tsv** file.  
+
+```console
+ak47@ak47:$ sudo umount /dev/mmcblkX
+```
+> Removing the card without unmounting it can result in data loss.  
+
+```console
+ak47@ak47:$ sudo dd if=../flashlayout_<>_FlashLayout_sdcard_<>.raw of=/dev/mmcblkX bs=8M conv=fdatasync status=progress
 ```
 
+And there it is enjoy image is flashed, enjoy the fruit of your work. But to really make it enjoyable will need a powerful to let us **Minicom**.  
 
+Minicom is a popular text-based terminal emulator program primarily used in Unix-like operating systems like Linux. It allows users to communicate with external devices connected via serial ports.
+
+So connect the **STLINK** to your USB port, locate the corresponding **tty** interface under **/dev**. Set the switches so your board boots from **SD-Card** then launch **minicom** on your **PC**.  
+
+```console
+ak47@ak47:$ sudo apt install minicom
+ak47@ak47:$ minicom -D /dev/ttyACMx
+```
+
+Now that we got familiar with our tools and environment let's get to the real deal.  
 
 
 
