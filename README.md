@@ -27,7 +27,7 @@ To be able to manipulate and develop applications on this MPU a Linux Distributi
 
 The OpenSTLinux package is a Linux distribution specifically designed for STM32MPU microprocessors, based on the **[Yocto Project](https://github.com/AKhadhraoui47/Yocto_Rpi_IMU?tab=readme-ov-file#yocto-project)** utilizing OpenEmbedded framework. To ease-up the learning process this distribution comes in different software Packages:  
 
-- **$\color{Aqua}{Starter Package}$** Aimed at beginners, providing essential tools and a basic environment for initial development. <sub>[Starter Pckg](https://wiki.st.com/stm32mpu/wiki/STM32MP13_Discovery_kits_-_Starter_Package)</sub>  
+- **$\color{Aqua}{Starter Package}$** Beginner-griendly, providing essential tools and a basic environment for initial development. <sub>[Starter Pckg](https://wiki.st.com/stm32mpu/wiki/STM32MP13_Discovery_kits_-_Starter_Package)</sub>  
 
 - **$\color{Aqua}{Developer Package}$** Offers additional tools and libraries for more advanced development. <sub>[Developer Pckg](https://wiki.st.com/stm32mpu/wiki/STM32MPU_Developer_Package)</sub>  
 
