@@ -103,7 +103,7 @@ Total number of available STM32 device in DFU mode: 1
 Now let's pass the **STM32CubeProgrammer** our device and the **tsv** file to flash our image on to the **SD-Card**.  
 
 ```console
- ak47@ak47:$ STM32_Programmer_CLI -c port=usb1 -w flashlayout_<IMAGE>/extensible/FlashLayout_sdcard_<>.tsv
+ak47@ak47:$ STM32_Programmer_CLI -c port=usb1 -w flashlayout_<IMAGE>/extensible/FlashLayout_sdcard_<>.tsv
  
  USB speed   : High Speed (480MBit/s)
  Manuf. ID   : STMicroelectronics
