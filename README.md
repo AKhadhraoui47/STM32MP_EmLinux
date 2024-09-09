@@ -45,7 +45,24 @@ The OpenSTLinux package is a Linux distribution specifically designed for STM32M
 
     - **Wayland-Weston**: For graphical user interfaces.  
     - **GStreamer**: For multimedia processing.  
-    - **ALSA** (Advanced Linux Sound Architecture): For audio functionalities.
+    - **ALSA** (Advanced Linux Sound Architecture): For audio functionalities.  
+
+## Say Cheez 📸  
+
+We will take our first image, or build our first image i should say. First of we will follow the steps provided in this [Distribution Pckg](https://wiki.st.com/stm32mpu/wiki/STM32MPU_Distribution_Package) to setup our environment.  
+
+> If you're not familiar with **OpenSTLinux** distribution i recommend starting with the [Starter Pckg](https://wiki.st.com/stm32mpu/wiki/STM32MP13_Discovery_kits_-_Starter_Package). Note that to deal efficiently with the distribution package, basic knowledge of **Yocto** is required, check this [repo](https://github.com/AKhadhraoui47/Yocto_Rpi_IMU?tab=readme-ov-file#yocto-project) where ressources are provided.  
+
+After setting-up your workspace let's setup our build environment. A provided script in the package will do the work for us, we just need to source it with some parameters.  
+
+```console
+ak47@ak47:$ DISTRO=openstlinux-weston MACHINE=stm32mp13-disco IMAGE=st-image-core  source layers/meta-st/scripts/envsetup.sh build-dir-name
+```
+> Parameters are of my choice according to the hardware available to test everything is OK. Full list of provided parameters is [here](https://wiki.st.com/stm32mpu/wiki/OpenSTLinux_distribution).  
+
+> Mentionning the **build-dir-name** when sourcing the setup file is recommended to avoid any errors caused by path strings length.  
+
+
 
 
 
