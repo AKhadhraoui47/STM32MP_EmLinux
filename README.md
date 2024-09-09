@@ -151,5 +151,9 @@ ak47@ak47:$ minicom -D /dev/ttyACMx
 
 Now that we got familiar with our tools and environment let's get to the real deal.  
 
+## Project's Context  
+
+Imagine this scenario; You're working on a custom product based on the $\color{Aqua}{STM32MP135}$ $\color{Aqua}{Microprocessor}$. For wireless communication over **Wi-Fi** your custom will be equipped with the [Grove Wifi v2](https://wiki.seeedstudio.com/Grove-UART_Wifi_V2/) from @seeedstudio.
+
 
 
