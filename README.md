@@ -21,5 +21,10 @@ This is the $\color{Aqua}{STM32MP135f-DK}$ board based on the $\color{Aqua}{MP13
   
 <sub>To check the full functionnalities and features provided by this board check the [user-manual](https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://www.st.com/resource/en/user_manual/um2993-discovery-kit-with-1-ghz-stm32mp135fa-mpu-stmicroelectronics.pdf&ved=2ahUKEwioi5n7ybWIAxXl_7sIHfkCOLwQFnoECAoQAQ&usg=AOvVaw2CwRJAdiHNoX7tqw4e1NXW). </sub>  
 
+To be able to manipulate and develop applications on this MPU a Linux Distribution is provided; $\color{Aqua}{OpenSTLinux}$.  
+
+## OpenSTLinux  
+
+
 
 
