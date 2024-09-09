@@ -200,6 +200,40 @@ And there it is our patch file will look something like this [patch file](meta-c
 *a/arch/arm/boot/dts/stm32mp135f-dk.dts*  
 *b/arch/arm/boot/dts/stm32mp135f-dk.dts*  
 
-Now move your patch to your custom layer. Check this repo for more informations about [layers manipulation](https://github.com/AKhadhraoui47/Yocto_Rpi_IMU?tab=readme-ov-file#project-study).
+Now move your patch to your custom layer. Check this repo for more informations about [layers manipulation](https://github.com/AKhadhraoui47/Yocto_Rpi_IMU?tab=readme-ov-file#project-study).  
 
+### Include the grove Module in DT  
+
+Same process as done to enable the UART8 instance will be repeated but the content is different. To tell the kernel that our [Grove Wifi v2](https://wiki.seeedstudio.com/Grove-UART_Wifi_V2/) is wired to UART8 we need to introduce the device as a **child-node** of the UART8 node.  
+
+```
+&uart8 {
+	pinctrl-names = "default", "sleep", "idle";
+	pinctrl-0 = <&uart8_pins_a>;
+	pinctrl-1 = <&uart8_sleep_pins_a>;
+	pinctrl-2 = <&uart8_idle_pins_a>;
+	/delete-property/dmas;
+	/delete-property/dma-names;
+	status = "okay";
+	current-speed = <115200>;
+
+	grovewifi: grovewifiv2 {
+		compatible = "seeedstudio,grovewifiv2";
+		status = "okay";
+	};
+};
+```
+So our final device-tree will look something like this [one](build-mp13/stm32mp135f-dk.dts).
+
+> The **compatible** binding is used to make correspondance between the device and its **kernel module** which we will see later
+
+### Recipe For Patches  
+
+A simple **bbappend** [recipe](meta-custom/recipes-kernel/linux/linux-stm32mp_%25.bbappend) will ensure applying those before compiling the **device-tree** into a **device-tree blob** that will extend the original kernel recipe.  
+
+### Kernel Module  
+
+A detailed comprehensive [documentation](https://github.com/AKhadhraoui47/Kernel_Modules) is provided about kernel development and the structure of the module i have developed for our module.  
+
+> Note that the correspondance between the hardware declared in the device-tree and the kernel module is ensured through [of_device_id struct](https://github.com/AKhadhraoui47/Kernel_Modules?tab=readme-ov-file#5-open-firmware-device-id).  
 
