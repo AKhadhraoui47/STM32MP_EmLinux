@@ -62,6 +62,56 @@ ak47@ak47:$ DISTRO=openstlinux-weston MACHINE=stm32mp13-disco IMAGE=st-image-cor
 
 > Mentionning the **build-dir-name** when sourcing the setup file is recommended to avoid any errors caused by path strings length.  
 
+Sourcing the file will take us automatically to the build directory where we launch our build process with **bitbake**.  
+```console
+ak47@ak47:$ bitbake <image>
+```
+> In case we didn't mention the **IMAGE** parameter when sourcing our file we will have to mention it when launching the build.  
+
+Once the build is complete, we will flash our **SD-Card**. Two ways will be covered; Our device in DFU Mode through USB OTG port or Flash the image directly to SD-Card from host machine but first let's check some key files under **DIR=build-dir/tmp-glibc/deploy/images/machine/**  
+
+```
+DIR --- arm-trusted-firmware/
+    --- kernel/ 
+    --- optee/
+    --- fip/
+    --- flashlayout_<IMAGE>/
+    --- scripts/ 
+```  
+
+These directories contain the binaries of every element of our image, essential for a correct booting. You can check the [boot sequence](https://wiki.st.com/stm32mpu/wiki/Boot_chain_overview#STM32MP13_boot_chain) for the MP13 series.  
+
+> **scripts/** will be covered later. **flashlayout_<IMAGE>/** is used to locate binaries and set the partionning provided by **tsv** file used by **STM32CubeProgrammer**.
+
+### DFU Mode  
+
+To flash our image with our device set in DFU Mode we will need the right combination. An explanatory [table](https://wiki.st.com/stm32mpu/wiki/STM32MP135x-DK_-_hardware_description#Boot_related_switches) is provided. <sub>Forced USB/UART boot
+for programming</sub>  
+
+Now let's flash the image using **STM32CubeProgrammer**. First let's check if our device is detected:  
+
+```console
+ak47@ak47:$ STM32_Programmer_CLI -l usb
+Total number of available STM32 device in DFU mode: 1
+
+  Device Index           : USB1
+  USB Bus Number         : 
+  USB Address Number     : 
+  ...
+```  
+
+Now let's pass the **STM32CubeProgrammer** our device and the **tsv** file to flash our image on to the **SD-Card**.  
+
+```console
+ ak47@ak47:$ STM32_Programmer_CLI -c port=usb1 -w flashlayout_<IMAGE>/extensible/FlashLayout_sdcard_<>.tsv
+ 
+ USB speed   : High Speed (480MBit/s)
+ Manuf. ID   : STMicroelectronics
+ Product ID  : DFU in HS Mode @Device ID /0x501, @Revision ID /0x1001
+ ...
+```  
+
+> Common error may occur due to wrong directories in **tsv** file. You may need to move up **two levels** example: ***fip/ -> ../../fip/***
 
 
 
