@@ -164,8 +164,42 @@ Imagine this scenario; You're working on a custom product based on the $\color{A
 
 ### Enabling UART instance  
 
-The UART instance i am working 
+Let's understand the data structure we will be modifying which is the $\color{Aqua}{Device}$ $\color{Aqua}{Tree}$. It is a data structure in embedded systems that tells the operating system about the hardware components and their configuration. Similar to how a BIOS provides essential hardware information at boot, the DT helps the OS manage hardware without hardcoding specifics, offering more flexibility across platforms.
 
+The UART instance i am working on is the UART8 instance initially **disabled**. That's why we will be applying a patch.   
 
+**1. Copy the DT device_tree.dts we will be modifying to a tmp/ directory**  
+**2. Copy in the same tmp/ device_tree.dts for example device_tree.dts.ref for reference**  
+**3. Modify the device_tree.dts to enable UART8**   
+**4. Generate the patch and copy to the folder in your custom layer**  
+
+```console
+ak47@ak47:$ cp build-mp135/tmp-glibc/work-shared/<machine>/kernel-source/arch/arm/boot/dts/stm32mp135f-dk.dts ~/tmp/stm32mp135f-dk.dts
+ak47@ak47:~/tmp/$ cp stm32mp135f-dk.dts stm32mp135f-dk.dts.ref
+ak47@ak47:~/tmp/$ nano stm32mp135f-dk.dts 
+
+&uart8 {
+	pinctrl-names = "default", "sleep", "idle";
+	pinctrl-0 = <&uart8_pins_a>;
+	pinctrl-1 = <&uart8_sleep_pins_a>;
+	pinctrl-2 = <&uart8_idle_pins_a>;
+	/delete-property/dmas;
+	/delete-property/dma-names;
+	//status = "disabled";
+    status = "okay";
+}
+```
+After modifying our file we will use **git** to compare and generate a file marking all differences in a **patch** file that will be applied in order to avoid modifying the original file  
+
+```console
+ak47@ak47:~/tmp/$ git diff --no-index stm32mp135f-dk.dts stm32mp135f-dk.dts.ref > 0001-Patch-File.patch
+```
+And there it is our patch file will look something like this [patch file](meta-custom/recipes-kernel/linux/stm32mp1/0001-enable-uart8.patch)  
+
+> The mentionned files in the **patch** file will be directing to **tmp/** folder change that to:   
+*a/arch/arm/boot/dts/stm32mp135f-dk.dts*  
+*b/arch/arm/boot/dts/stm32mp135f-dk.dts*  
+
+Now move your patch to your custom layer. Check this repo for more informations about [layers manipulation](https://github.com/AKhadhraoui47/Yocto_Rpi_IMU?tab=readme-ov-file#project-study).
 
 
