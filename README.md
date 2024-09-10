@@ -270,7 +270,7 @@ Now to interact with our module an under-improvement CLI is provided.
 
 A [CLI](meta-custom/recipes-kernel/grovewifi/files/grovewifi_cli.c) written in C is provided as a built-in feature in our generated image is provided. This CLI exploits the **[Sysfs](https://github.com/AKhadhraoui47/Kernel_Modules?tab=readme-ov-file#b-sysfs-interface)** entries to communicate with the kernel module. 
 
-This CLI provides the commands below  
+This CLI handles any unknown commands or commands with extra or missing arguments and  provides the functionnalities below  
 
 ```
 grovewifi_CLI --chk-state /*Returns if the state is OK or Not*/
@@ -306,7 +306,8 @@ The second line installs the executable with specific permissions under this dir
 ## Demo 🎞️  
 
 Let's go for a demo showcasing the outcome of our hardwork. after building and flashing.  
- 
+
+[![Watch the video](demo/thmbnl.png)](demo/Demo.mp4)
 
 ## References :label:  
 
