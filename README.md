@@ -138,7 +138,7 @@ ak47@ak47:$ sudo umount /dev/mmcblkX
 ak47@ak47:$ sudo dd if=../flashlayout_<>_FlashLayout_sdcard_<>.raw of=/dev/mmcblkX bs=8M conv=fdatasync status=progress
 ```
 
-And there it is enjoy image is flashed, enjoy the fruit of your work. But to really make it enjoyable will need a powerful to let us **Minicom**.  
+And there it is your image is flashed, enjoy the fruit of your work. But to really make it enjoyable will need another powerful tool; **Minicom**.  
 
 Minicom is a popular text-based terminal emulator program primarily used in Unix-like operating systems like Linux. It allows users to communicate with external devices connected via serial ports.
 
