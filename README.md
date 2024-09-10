@@ -233,12 +233,91 @@ A simple **bbappend** [recipe](meta-custom/recipes-kernel/linux/linux-stm32mp_%2
 
 ### Kernel Module  
 
-A detailed comprehensive [documentation](https://github.com/AKhadhraoui47/Kernel_Modules) is provided about kernel development and the structure of the module i have developed for our module.  
+A detailed comprehensive [documentation](https://github.com/AKhadhraoui47/Kernel_Modules) is provided about kernel development and the structure of the [module](meta-custom/recipes-kernel/grovewifi/files/grovewifiv2.c) i have developed..  
 
 > Note that the correspondance between the hardware declared in the device-tree and the kernel module is ensured through [of_device_id struct](https://github.com/AKhadhraoui47/Kernel_Modules?tab=readme-ov-file#5-open-firmware-device-id).  
 
-Recipe
+Now that our source code is ready we will need two things: 
 
-## References  
+- [Makefile](meta-custom/recipes-kernel/grovewifi/files/Makefile): This make will process our kernel module to turn it into a **kernel object**  
 
+- [Recipe](meta-custom/recipes-kernel/grovewifi/grovewifiv2-modules_1.0.bb): The recipe ensures that **make** process is done over **cross-compilattion** then installed under the right directory.  
 
+> If you're not familiar with **Makefile** and the **make** build tool check this **[repo](https://github.com/AKhadhraoui47/Yocto_Rpi_IMU?tab=readme-ov-file#makefile)**.  
+
+#### The recipe 🥢  
+
+Let's go through the main components of this particular [Recipe](meta-custom/recipes-kernel/grovewifi/grovewifiv2-modules_1.0.bb).  
+
+```
+inherit modules
+```  
+
+This line tells Yocto to inherit the module class, which contains common functions and behaviors used for building Linux kernel modules.  
+
+```
+EXTRA_OEMAKE:append:task-install = " -C ${STAGING_KERNEL_DIR} M=${S}"
+EXTRA_OEMAKE += "KDIR=${STAGING_KERNEL_DIR}"
+```  
+$\color{aqua}{EXTRA}$ $\color{aqua}{OEMAKE}$ : Additional GNU make options.  
+$\color{aqua}{:append:task-install}$: This restricts the additional options to the "install" task (When the compiled kernel module is installed to its final location).  
+$\color{aqua}{-C}$ $\color{aqua}{STAGING}$ $\color{aqua}{KERNEL}$ $\color{aqua}{DIR}$: Tells make to change to the kernel's staging directory, which contains the kernel headers and build scripts needed for the module.  
+$\color{aqua}{M=}$ : Specifies the module source code directory, so make knows where to look for the module’s source files.  
+
+Now to interact with our module an under-improvement CLI is provided.  
+
+### Command Line Interface  
+
+A [CLI](meta-custom/recipes-kernel/grovewifi/files/grovewifi_cli.c) written in C is provided as a built-in feature in our generated image is provided. This CLI exploits the **[Sysfs](https://github.com/AKhadhraoui47/Kernel_Modules?tab=readme-ov-file#b-sysfs-interface)** entries to communicate with the kernel module. 
+
+This CLI provides the commands below  
+
+```
+grovewifi_CLI --chk-state /*Returns if the state is OK or Not*/
+grovewifi_CLI --connect <ssid> <pwd> /*Returns connection is established*/
+grovewifi_CLI --disconnect /*Returns if operation is successful or not*/
+grovewifi_CLI --get-ip /*Returns your IP addr*/
+grovewifi_CLI --get-ip <IP or Host> /*Returns ok or not*/ 
+```
+> Note that this CLI is under improvement and "successful operation" and "unsuccessful operation" are the provided responses. 
+
+#### The recipe 🥢  
+
+Let's go through the main components of this [Recipe](meta-custom/recipes-kernel/grovewifi/grovewifiv2-cli_1.0.bb).  
+
+```
+do_compile() {
+         ${CC} grovewifi_cli.c -o grovewifi_CLI
+}
+```
+
+This function is used to cross-compile the source code into binary that will be installed in our target image through:  
+
+```
+do_install() {
+         install -d ${D}${bindir}
+         install -m 0755 grovewifi_CLI ${D}${bindir}
+}
+```
+
+The first line command installs the **bindir** which references **/usr/bin**   
+The second line installs the executable with specific permissions under this directory  
+
+## Demo 🎞️  
+
+Let's go for a demo showcasing the outcome of our hardwork. after building and flashing.  
+ 
+
+## References :label:  
+
+[DigiKey](https://www.digikey.com/en/maker/projects/intro-to-embedded-linux-part-5-how-to-enable-i2c-in-the-yocto-project/6843bbf9a83c4c96888fccada1e7aedf)  <sub>Shawn Hymel</sub>  
+
+[12 Glossary Variables](https://docs.yoctoproject.org/ref-manual/variables.html)  <sub>Yocto Project Documentation</sub>  
+
+[Yocto Project Manual](https://docs.yoctoproject.org/ref-manual/)  <sub>Yocto Documentation</sub>
+
+[The Linux Kernel Module Programming Guide](https://sysprog21.github.io/lkmpg/)  <sub>Peter Jay Salzman, Michael Burian, Ori Pomerantz, Bob Mottram, Jim Huang</sub>  
+  
+[LINUX DEVICE DRIVERS 3rd Edition](https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://lwn.net/Kernel/LDD3/&ved=2ahUKEwjJ4vzx3JyHAxWjT6QEHZg9BcQQFnoECBQQAQ&usg=AOvVaw01bM6Zgwp5iRGPE8AVMxj-) <sub>Jonathan Corbet, Alessandro Rubini, and Greg Kroah-Hartman </sub>
+
+[Serial Device Bus](http://events17.linuxfoundation.org/sites/events/files/slides/serdev-elce-2017-2.pdf) <sub> Johan Hovold </sub>
