@@ -85,7 +85,7 @@ These directories contain the binaries of every element of our image, essential 
 
 ### DFU Mode  
 
-To flash our image with our device set in DFU Mode we will need the right combination. An explanatory [table](https://wiki.st.com/stm32mpu/wiki/STM32MP135x-DK_-_hardware_description#Boot_related_switches) is provided. <sub>Forced USB/UART boot
+To flash our image with our device set in DFU Mode we will need the right combination of switches. An explanatory [table](https://wiki.st.com/stm32mpu/wiki/STM32MP135x-DK_-_hardware_description#Boot_related_switches) is provided. <sub>Forced USB/UART boot
 for programming</sub>  
 
 Now let's flash the image using **STM32CubeProgrammer**. First let's check if our device is detected:  
