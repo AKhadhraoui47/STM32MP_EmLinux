@@ -320,6 +320,8 @@ Let's go for a demo showcasing the outcome of our hardwork, after building and f
 
 [DigiKey](https://www.digikey.com/en/maker/projects/intro-to-embedded-linux-part-5-how-to-enable-i2c-in-the-yocto-project/6843bbf9a83c4c96888fccada1e7aedf)  <sub>Shawn Hymel</sub>  
 
+[Yocto Lab](https://www.blaess.fr/christophe/yocto-lab/) <sub>Christopher Blaess </sub>
+
 [12 Glossary Variables](https://docs.yoctoproject.org/ref-manual/variables.html)  <sub>Yocto Project Documentation</sub>  
 
 [Yocto Project Manual](https://docs.yoctoproject.org/ref-manual/)  <sub>Yocto Documentation</sub>
