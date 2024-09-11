@@ -309,7 +309,7 @@ The second line installs the executable with specific permissions under this dir
 
 Let's go for a demo showcasing the outcome of our hardwork, after building and flashing.  
 
-[![Watch the video](demo/thmbnl.png)]([demo/Demo.mp4](https://drive.google.com/file/d/14nXAt9SvIfmfsV4pKXDjXjaB5pqKQmBZ/view?usp=sharing))
+[![Watch the video](demo/thmbnl.png)](https://drive.google.com/file/d/14nXAt9SvIfmfsV4pKXDjXjaB5pqKQmBZ/view?usp=sharing)
 
 
 
