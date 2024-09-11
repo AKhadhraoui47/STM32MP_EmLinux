@@ -100,7 +100,7 @@ Total number of available STM32 device in DFU mode: 1
   ...
 ```  
 
-Now let's pass the **STM32CubeProgrammer** our device and the **tsv** file to flash our image on to the **SD-Card**.  
+We will pass the STM32CubeProgrammer the device index and TSV file as parameters to flash the image onto the SD card.
 
 ```console
 ak47@ak47:$ STM32_Programmer_CLI -c port=usb1 -w flashlayout_<IMAGE>/extensible/FlashLayout_sdcard_<>.tsv
@@ -142,7 +142,7 @@ And there it is your image is flashed, enjoy the fruit of your work. But to real
 
 Minicom is a popular text-based terminal emulator program primarily used in Unix-like operating systems like Linux. It allows users to communicate with external devices connected via serial ports.
 
-So connect the **STLINK** to your USB port, locate the corresponding **tty** interface under **/dev**. Set the switches so your board boots from **SD-Card** then launch **minicom** on your **PC**.  
+So connect the board to PC via **STLINK**, locate the corresponding **tty** interface under **/dev**. Set the switches so your board boots from **SD-Card** then launch **minicom** on your **PC**.  
 
 ```console
 ak47@ak47:$ sudo apt install minicom
@@ -154,6 +154,8 @@ Now that we got familiar with our tools and environment let's get to the real de
 ## Project's Context 💡
 
 Imagine this scenario; You're working on a custom product based on the $\color{Aqua}{STM32MP135}$ $\color{Aqua}{Microprocessor}$. For wireless communication over **Wi-Fi** your custom will be equipped with the [Grove Wifi v2](https://wiki.seeedstudio.com/Grove-UART_Wifi_V2/) from [@seeedstudio](https://github.com/Seeed-Studio). And to easily interact with the module we will develop its own **Kernel Module** and a **Command Line Interface** and make an **in-tree** device.  
+
+> Note that DT = Device Tree
 
 - **Key Steps**:
     - 
@@ -194,7 +196,7 @@ After modifying our file we will use **git** to compare and generate a file mark
 ```console
 ak47@ak47:~/tmp/$ git diff --no-index stm32mp135f-dk.dts stm32mp135f-dk.dts.ref > 0001-Patch-File.patch
 ```
-And there it is our patch file will look something like this [patch file](meta-custom/recipes-kernel/linux/stm32mp1/0001-enable-uart8.patch)  
+And there it is our [patch file](meta-custom/recipes-kernel/linux/stm32mp1/0001-enable-uart8.patch) is ready.
 
 > The mentionned files in the **patch** file will be directing to **tmp/** folder change that to:   
 *a/arch/arm/boot/dts/stm32mp135f-dk.dts*  
@@ -229,7 +231,7 @@ So our final device-tree will look something like this [one](build-mp13/stm32mp1
 
 ### Recipe For Patches  
 
-A simple **bbappend** [recipe](meta-custom/recipes-kernel/linux/linux-stm32mp_%25.bbappend) will ensure applying those before compiling the **device-tree** into a **device-tree blob** that will extend the original kernel recipe.  
+A simple **bbappend** [recipe](meta-custom/recipes-kernel/linux/linux-stm32mp_%25.bbappend) will ensure applying those changes before compiling the **device-tree** into a **device-tree blob** by extending the original kernel recipe.  
 
 ### Kernel Module  
 
