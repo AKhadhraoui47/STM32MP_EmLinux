@@ -279,7 +279,7 @@ grovewifi_CLI --chk-state /*Returns if the state is OK or Not*/
 grovewifi_CLI --connect <ssid> <pwd> /*Returns connection is established*/
 grovewifi_CLI --disconnect /*Returns if operation is successful or not*/
 grovewifi_CLI --get-ip /*Returns your IP addr*/
-grovewifi_CLI --get-ip <IP or Host> /*Returns ok or not*/ 
+grovewifi_CLI --ping <IP or Host> /*Returns ok or not*/ 
 ```
 > Note that this CLI is under improvement and "successful operation" and "unsuccessful operation" are the provided responses. 
 
